@@ -2,9 +2,139 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>你不知道的湘莲~</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <title>我保证：你根本就没吃过正宗湘莲</title>
+    <style type="text/css">
+        body {
+            background-color: #F2F2F2;
+            color: #666;
+            padding: 10px 5px;
+        }
+        h1 {
+            border-bottom: 1px solid #CCC;
+        }
+        section {
+            padding: 5px;
+        }
+        section h3 {
+            margin-top: 20px;
+            padding-bottom: 4px;
+        }
+        section h3 .desc {
+            font-size: 14px;
+            font-weight: normal;
+            padding-left: 6px;
+        }
+        .img {
+            padding: 4px;
+            background-color: #EFEFEF;
+            box-shadow: 0 0 4px #999;
+            margin-top: 10px;
+        }
+        img {
+            vertical-align: middle;
+        }
+        h3 {
+            text-indent: 1em;
+        }
+    </style>
   </head>
   <body>
-    你真的吃过正宗湘莲么？
+    <script type="text/javascript">
+        var steps = [
+            {name: '目前市面上，绝大多数湘莲，都是机械批量打磨生产出来的', desc: '', imgs: [
+                '1.jpg', '2.jpg', '3.jpg', '4.jpg'
+            ]},
+            {before: '<h3 class="indent">在食物的美妙世界里，即使机械正在不断提高生产效率，但是手工的细腻、韵味和绿色安全，永远不是机械能够代替的。</h3><h3 class="indent">作为一个从莲乡湘潭出来的湖南人，我知道：实际上，正宗手工湘莲的生产过程，是这样的。</h3>', 
+            name: '生长', desc: '湘莲在田地里自由自在的生长', imgs: [
+                '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
+            ]},
+            {name: '采摘', desc: '农民伯伯一个一个将莲蓬采摘回家', imgs: ['1.jpg', '2.jpg']},
+            {name: '去蓬', desc: '男女老少齐动员，将莲子从莲蓬中取出', imgs: ['1.jpg', '2.jpg']},
+            {name: '去皮', desc: '去掉粗皮、幼皮，莲子露出真笑脸', imgs: ['1.jpg', '2.jpg', '3.jpg', '4.jpg']},
+            {name: '去芯', desc: '去掉略带苦涩的莲芯', imgs: ['1.jpg', '2.jpg', '3.jpg']},
+            {name: '晾晒', desc: '放到太阳下充分晾晒', imgs: ['1.jpg', '2.jpg']},
+            {name: '收获', desc: '晾晒干以后，放到袋内密封收藏', imgs: ['1.jpg', '2.jpg', '3.jpg']},
+            {name: '喜悦', desc: '丰收的喜悦', imgs: ['1.jpg', '2.jpg']}
+        ]
+
+        var end = '<section><h3>再高效的机器，总代替不了手工的细腻。</h3><h3>手工湘莲，细腻的生产，软糯的口感，入口即化的味蕾刺激，是不可替代的家乡温情。</h3><h3>唯有亲口一试，方能一解乡愁。</h3></section>'
+
+        window.onload = function() {
+            var html = ['<h1>你根本就没吃过正宗湘莲</h1>'];
+            for(var i = 0; i < steps.length; i++) {
+                var step = steps[i];
+                var name = step.name;
+                var imgs = step.imgs;
+                html.push('<section>')
+                if (step.before) {
+                    html.push(step.before);
+                }
+                var prefix = '';
+                if (i != 0) {
+                    prefix = '步骤' + i + ' - ';
+                }
+                var desc = ''
+                if (step.desc) {
+                    desc = '<span class="desc">(' + step.desc + ')</span>'
+                }
+                html.push('<h3>' + prefix + name + desc + '</h3><div class="imgs">')
+                for(var j = 0; j < imgs.length; j++) {
+                    html.push('<div class="img"><img src="imgs/step' + i + '/' + imgs[j] + '" width="100%" height="auto"/></div>')
+                }
+                html.push('</div></section>')
+            }
+            html.push(end);
+            document.body.innerHTML = html.join('');
+        }
+
+        var dataForWeixin={
+            appId:"",
+            MsgImg:"http://xianglian.github.io/imgs/step6/1.jpg",
+            TLImg:"http://xianglian.github.io/imgs/step6/1.jpg",
+            url:top.location.href,
+            title:"我保证：你根本就没吃过正宗湘莲",
+            desc:"正宗手工湘莲，湖南人一定熟悉的湘莲制作过程。",
+            fakeid:"",
+            callback:function(){}
+        };
+        (function(){
+            var onBridgeReady=function(){
+                WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                    WeixinJSBridge.invoke('sendAppMessage',{
+                        "appid":dataForWeixin.appId,
+                        "img_url":dataForWeixin.MsgImg,
+                        "img_width":"120",
+                        "img_height":"120",
+                        "link":dataForWeixin.url,
+                        "desc":dataForWeixin.desc,
+                        "title":dataForWeixin.title
+                    }, function(res){
+                        dataForWeixin.callback();
+                    });
+                });
+                WeixinJSBridge.on('menu:share:timeline', function(argv){
+                    dataForWeixin.callback();
+                    WeixinJSBridge.invoke('shareTimeline',{
+                        "img_url":dataForWeixin.TLImg,
+                        "img_width":"120",
+                        "img_height":"120",
+                        "link":dataForWeixin.url,
+                        "desc":dataForWeixin.desc,
+                        "title":dataForWeixin.title
+                    }, function(res){
+                    });
+                });
+            };
+
+            if(document.addEventListener){
+               document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            }else if(document.attachEvent){
+               document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+               document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+            }
+        })();
+    </script>
   </body>
 </html>
