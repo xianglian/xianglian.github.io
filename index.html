@@ -20,6 +20,8 @@
         section h3 {
             margin-top: 20px;
             padding-bottom: 4px;
+            line-height: 2.0;
+            text-indent: 1em;
         }
         section h3 .desc {
             font-size: 14px;
@@ -35,8 +37,11 @@
         img {
             vertical-align: middle;
         }
-        h3 {
-            text-indent: 1em;
+        hr {
+            border-left: none;
+            border-top: 1px solid #E6E6E6;
+            border-bottom: 1px solid #FFF;
+            margin-top: 20px;
         }
     </style>
   </head>
@@ -46,7 +51,7 @@
             {name: '目前市面上，绝大多数湘莲，都是机械批量打磨生产出来的。<span style="color:#F60;">可是，真正的纯正湘莲，并不是这样生产出来的！</span>', desc: '', imgs: [
                 '1.jpg', '2.jpg', '3.jpg', '4.jpg'
             ]},
-            {before: '<h3 class="indent">在食物的美妙世界里，即使机械正在不断提高生产效率，但是手工的细腻、韵味和绿色安全，永远不是机械能够代替的。</h3><h3 class="indent">作为一个从莲乡湘潭出来的湖南人，我知道：<span style="color:#F60;">实际上，正宗手工湘莲的生产过程，是这样的。</span></h3>', 
+            {before: '<hr><h3 class="indent">在食物的美妙世界里，即使机械正在不断提高生产效率，但是手工的细腻、韵味和绿色安全，永远不是机械能够代替的。</h3><h3 class="indent">作为一个从莲乡湘潭出来的湖南人，我知道：<span style="color:#F60;">实际上，正宗手工湘莲的生产过程，是这样的。</span></h3>', 
             name: '生长', desc: '湘莲在田地里自由自在的生长', imgs: [
                 '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
             ]},
@@ -59,7 +64,7 @@
             {name: '喜悦', desc: '丰收的喜悦', imgs: ['1.jpg', '2.jpg']}
         ]
 
-        var end = '<section><h3>再高效的机器，总代替不了手工的细腻。</h3><h3>手工湘莲，细腻的生产，软糯的口感，入口即化的味蕾刺激，是不可替代的家乡温情。</h3><h3>唯有亲口一试，方能一解乡愁。</h3></section>'
+        var end = '<section><hr><h3>再高效的机器，总代替不了手工的细腻。</h3><h3>手工湘莲，细腻的生产，软糯的口感，入口即化的味蕾刺激，是不可替代的家乡温情。</h3><h3>唯有亲口一试，方能一解乡愁。</h3><hr style="margin-bottom: 10px;"><h4 style="text-align: center;">点击 <a href="http://xianglian.taobao.com">http://xianglian.taobao.com</a>，购买纯正湘莲。</h4></section>'
 
         window.onload = function() {
             var html = ['<h1>你没吃过的正宗湘莲</h1>'];
