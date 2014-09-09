@@ -94,27 +94,27 @@
             document.body.innerHTML = html.join('');
         }
 
-        var dataForWeixin={
-            appId:"",
-            MsgImg:"http://xianglian.github.io/imgs/step1/8.jpg",
-            TLImg:"http://xianglian.github.io/imgs/step1/8.jpg",
-            url:top.location.href,
-            title:"我保证：你没吃过正宗湘莲",
-            desc:"正宗手工湘莲，湖南人一定熟悉的湘莲制作过程。",
-            fakeid:"",
-            callback:function(){}
+        var dataForWeixin = {
+            appId: "",
+            MsgImg: "http://xianglian.github.io/imgs/step1/8.jpg",
+            TLImg: "http://xianglian.github.io/imgs/step1/8.jpg",
+            url: top.location.href,
+            title: "我保证：你没吃过正宗湘莲",
+            desc: "正宗手工湘莲，湖南人一定熟悉的湘莲制作过程。",
+            fakeid: "",
+            callback: function(){}
         };
         (function(){
-            var onBridgeReady=function(){
+            var onBridgeReady = function(){
                 WeixinJSBridge.on('menu:share:appmessage', function(argv){
                     WeixinJSBridge.invoke('sendAppMessage',{
-                        "appid":dataForWeixin.appId,
-                        "img_url":dataForWeixin.MsgImg,
-                        "img_width":"120",
-                        "img_height":"120",
-                        "link":dataForWeixin.url,
-                        "desc":dataForWeixin.desc,
-                        "title":dataForWeixin.title
+                        "appid": dataForWeixin.appId,
+                        "img_url": dataForWeixin.MsgImg,
+                        "img_width": "120",
+                        "img_height": "120",
+                        "link": dataForWeixin.url,
+                        "desc": dataForWeixin.desc,
+                        "title": dataForWeixin.title
                     }, function(res){
                         dataForWeixin.callback();
                     });
@@ -122,20 +122,20 @@
                 WeixinJSBridge.on('menu:share:timeline', function(argv){
                     dataForWeixin.callback();
                     WeixinJSBridge.invoke('shareTimeline',{
-                        "img_url":dataForWeixin.TLImg,
-                        "img_width":"120",
-                        "img_height":"120",
-                        "link":dataForWeixin.url,
-                        "desc":dataForWeixin.desc,
-                        "title":dataForWeixin.title
+                        "img_url": dataForWeixin.TLImg,
+                        "img_width": "120",
+                        "img_height": "120",
+                        "link": dataForWeixin.url,
+                        "desc": dataForWeixin.desc,
+                        "title": dataForWeixin.title
                     }, function(res){
                     });
                 });
             };
 
-            if(document.addEventListener){
+            if(document.addEventListener) {
                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-            }else if(document.attachEvent){
+            } else if(document.attachEvent) {
                document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
                document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
             }
